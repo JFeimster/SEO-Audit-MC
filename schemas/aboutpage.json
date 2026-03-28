@@ -1,0 +1,19 @@
+{
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "@id": "<CANONICAL_URL>#webpage",
+  "url": "<CANONICAL_URL>",
+  "name": "<PAGE_TITLE>",
+  "description": "<PAGE_DESCRIPTION>",
+  "about": {
+    "@type": "Organization",
+    "name": "Distilled Funding by Moonshine Capital"
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "url": "<SITE_URL>"
+  },
+  "breadcrumb": {
+    "@id": "<CANONICAL_URL>#breadcrumb"
+  }
+}

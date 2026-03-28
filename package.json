@@ -1,0 +1,16 @@
+{
+  "name": "moonshine-seo-ops",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Phase 0 SEO ops and controlled pSEO control repo for Distilled Funding by Moonshine Capital.",
+  "scripts": {
+    "bootstrap": "tsx scripts/generate-csv-templates.ts",
+    "verify": "tsx scripts/verify-urls.ts",
+    "qa": "tsx scripts/qa-check.ts",
+    "schema": "tsx scripts/generate-schema.ts"
+  },
+  "devDependencies": {
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  }
+}

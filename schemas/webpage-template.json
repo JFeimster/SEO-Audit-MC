@@ -1,0 +1,19 @@
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "<CANONICAL_URL>#webpage",
+  "url": "<CANONICAL_URL>",
+  "name": "<PAGE_TITLE>",
+  "description": "<PAGE_DESCRIPTION>",
+  "isPartOf": {
+    "@type": "WebSite",
+    "url": "<SITE_URL>"
+  },
+  "about": {
+    "@type": "Thing",
+    "name": "<PRIMARY_TOPIC>"
+  },
+  "breadcrumb": {
+    "@id": "<CANONICAL_URL>#breadcrumb"
+  }
+}
