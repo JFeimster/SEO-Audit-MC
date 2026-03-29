@@ -1,6 +1,6 @@
 # URL Verification Report
 
-- Generated at: `2026-03-29T02:00:47.458Z`
+- Generated at: `2026-03-29T03:49:04.667Z`
 - URL source: `csv`
 - Total URLs: `5`
 - Passed critical checks: `5`
@@ -68,7 +68,7 @@
 - Meta description: Discover how Warp Speed Mortgage is transforming the home loan industry with its innovative approach, leveraging cutting-edge technology and personalized service to deliver an efficient and hassle-free mortgage experience for homebuyers.
 - Canonical: https://www.distilledfunding.com/post/warp-speed-mortgage-review
 - Robots meta: (missing)
-- First H1: How 'Warp Speed Mortgage' is Revolutionizing the Home Loan Industry
+- First H1: (missing)
 - JSON-LD count: `1`
 - JSON-LD @types: BlogPosting, ImageObject, Organization, Person, itemPage
 - Critical failures: (none)

@@ -1,7 +1,7 @@
 task_id,url,page_type,issue_type,severity,owner,status,recommended_action,notes
-AQ-001,https://www.distilledfunding.com/privacy-policy,trust,meta_description_missing,high,seo-ops,open,add_meta_description_in_wix_seo_settings,Quick high-impact fix
-AQ-002,https://www.distilledfunding.com/revenuebased,money_page,jsonld_missing,high,seo-ops,open,add_jsonld_block_for_money_page,Priority schema remediation
-AQ-003,https://www.distilledfunding.com/privacy-policy,trust,jsonld_missing,medium,seo-ops,open,add_trust_page_jsonld_block,Trust page schema gap
-AQ-004,https://www.distilledfunding.com/industries/wix-seller-financing,industry_template,jsonld_missing,medium,seo-ops,open,add_industry_template_jsonld_pattern,Template readiness fix
+AQ-001,https://www.distilledfunding.com/privacy-policy,trust,meta_description_missing,high,seo-ops,implemented_in_wix,run_js_aware_validation_and_confirm_live_head,Embed deployed; static verifier still sees missing description
+AQ-002,https://www.distilledfunding.com/revenuebased,money_page,jsonld_missing,high,seo-ops,implemented_in_wix,run_js_aware_validation_and_confirm_live_head,Embed deployed; static verifier still sees JSON-LD count 0
+AQ-003,https://www.distilledfunding.com/privacy-policy,trust,jsonld_missing,medium,seo-ops,implemented_in_wix,run_js_aware_validation_and_confirm_live_head,Embed deployed; static verifier still sees JSON-LD count 0
+AQ-004,https://www.distilledfunding.com/industries/wix-seller-financing,industry_template,jsonld_missing,medium,seo-ops,implemented_in_wix,run_js_aware_validation_and_confirm_live_head,Embed deployed; static verifier still sees JSON-LD count 0
 AQ-005,https://www.distilledfunding.com/,homepage,robots_meta_missing_validation,low,seo-ops,open,validate_policy_before_any_robots_meta_change,Do not treat as automatic defect
 AQ-006,https://www.distilledfunding.com/post/warp-speed-mortgage-review,legacy_blog,legacy_url_intent_triage,medium,seo-ops,open,decide_keep_merge_or_redirect,Needs live content decision
