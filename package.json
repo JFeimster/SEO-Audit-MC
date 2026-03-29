@@ -6,6 +6,7 @@
   "scripts": {
     "bootstrap": "tsx scripts/generate-csv-templates.ts",
     "verify": "tsx scripts/verify-urls.ts",
+    "verify:urls": "tsx scripts/verify-urls.ts",
     "qa": "tsx scripts/qa-check.ts",
     "schema": "tsx scripts/generate-schema.ts"
   },

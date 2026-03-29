@@ -47,3 +47,27 @@ It exists to stabilize brand, trust, crawl, schema, and publishing controls befo
 3. Keep schema changes governed by `schemas/` starters plus `prompts/schema-generation.md`.
 4. Use `scripts/verify-urls.ts` and `scripts/qa-check.ts` as the starting point for repeatable checks.
 5. Do not generate large page batches until Phase 0 done criteria are satisfied in `TASKS.md`.
+
+## URL Verification Usage
+
+Run the Phase 0 URL verifier:
+
+```bash
+npm run verify
+```
+
+Behavior:
+
+- Reads URLs from `data/five_url_verification.csv` (column: `url`) when usable rows exist.
+- Falls back to a small hardcoded list when usable CSV rows are missing.
+- Writes reports to:
+  - `reports/url-verification.csv`
+  - `reports/url-verification.md`
+- Exits with a non-zero status when any URL has status not `200`, missing title, or missing canonical.
+
+## Phase 0 Audit Tracking Files
+
+- `data/audit_issues.csv`: master list of normalized audit findings with severity, status, ownership, and due dates.
+- `data/issue_to_url_map.csv`: mapping table that links each issue to the exact impacted URL(s) and page context.
+- `data/wix_changes.csv`: execution log for requested and published Wix changes tied to SEO remediation work.
+- `data/schema_backlog.csv`: structured queue of schema fixes with missing required fields, owners, and release targeting.
