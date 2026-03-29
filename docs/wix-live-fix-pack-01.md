@@ -1,22 +1,26 @@
 # Wix Live Fix Pack 01
 
-Scope: First live remediation pass for the highest-priority Phase 0 pages.
+Scope: First live implementation package for the three highest-priority Phase 0 pages.
 
-## 1) https://www.distilledfunding.com/privacy-policy
+## Page: https://www.distilledfunding.com/privacy-policy
 
 - URL: `https://www.distilledfunding.com/privacy-policy`
 - Issue:
   - Missing meta description
   - Missing JSON-LD
-- Current risk:
-  - Trust page snippet control is weak in search results.
-  - No structured page context for crawlers on a key trust asset.
-- Exact recommended page-level fix:
-  - Add a page-specific meta description in Wix SEO settings.
-  - Add one page-specific JSON-LD block (`WebPage`) with fields below.
-- Exact meta description draft:
+- Why it matters:
+  - Trust page can show weak or auto-generated snippets in search.
+  - No structured page context on a high-trust URL.
+- Exact Wix implementation location:
+  - Meta description: `Wix Dashboard -> Pages & Menu -> Privacy Policy -> SEO Basics`
+  - JSON-LD: `Wix Dashboard -> Pages & Menu -> Privacy Policy -> Advanced SEO -> Structured data markup`
+  - Fallback if needed: `Wix Dashboard -> Settings -> Custom Code` (target this URL only)
+- Exact recommended fix:
+  - Add a page-specific meta description.
+  - Add one minimal `WebPage` JSON-LD block that matches visible page intent.
+- Ready-to-paste meta description:
   - `Read Moonshine Capital's privacy policy to understand what data we collect, how we use it, and what choices you have to manage your information.`
-- Exact JSON-LD recommendation:
+- Ready-to-paste JSON-LD:
 
 ```json
 {
@@ -33,23 +37,26 @@ Scope: First live remediation pass for the highest-priority Phase 0 pages.
 }
 ```
 
-- Implementation notes (Wix):
-  - Go to **Pages & Menu -> Privacy Policy -> SEO Basics** and update meta description.
-  - Add JSON-LD in **Advanced SEO -> Structured data markup** for this page.
-  - If page-level structured data UI is unavailable, use **Settings -> Custom Code** and target this URL only.
+- Validation steps after publishing:
+  - Open page source and confirm `<meta name="description">` is present with the exact text.
+  - Confirm one `application/ld+json` block is present on this page.
+  - Re-run verifier: `npm run verify` and confirm this URL no longer reports missing meta/JSON-LD.
 
-## 2) https://www.distilledfunding.com/revenuebased
+## Page: https://www.distilledfunding.com/revenuebased
 
 - URL: `https://www.distilledfunding.com/revenuebased`
 - Issue:
   - Missing JSON-LD
-- Current risk:
-  - Primary money page has no structured entity/service context.
-- Exact recommended page-level fix:
-  - Add one page-specific JSON-LD block (`Service`) aligned to visible content.
-- Exact meta description draft where needed:
-  - No change required in this pack (meta description already present in verification output).
-- Exact JSON-LD recommendation:
+- Why it matters:
+  - Primary money page has no structured service context for crawlers.
+- Exact Wix implementation location:
+  - JSON-LD: `Wix Dashboard -> Pages & Menu -> Revenue-Based Financing page -> Advanced SEO -> Structured data markup`
+  - Fallback if needed: `Wix Dashboard -> Settings -> Custom Code` (target this URL only)
+- Exact recommended fix:
+  - Add one minimal `Service` JSON-LD block aligned to visible page content.
+- Ready-to-paste meta description if needed:
+  - No update needed in this fix pack (meta description already exists from verification run).
+- Ready-to-paste JSON-LD:
 
 ```json
 {
@@ -62,29 +69,32 @@ Scope: First live remediation pass for the highest-priority Phase 0 pages.
     "@type": "Organization",
     "name": "Moonshine Capital"
   },
-  "description": "Revenue-based financing options for business growth.",
-  "areaServed": "<FILL_MANUALLY_IF_USED>",
-  "offers": "<FILL_MANUALLY_OR_REMOVE>"
+  "description": "Revenue-based financing options for business growth."
 }
 ```
 
-- Implementation notes (Wix):
-  - Add structured data for this page only in **Advanced SEO -> Structured data markup**.
-  - Remove `areaServed` and `offers` if not confirmed before publish.
-  - Keep schema copy aligned with on-page terms used in the visible hero/body text.
+- Manual completion fields:
+  - None required for this minimal valid block.
+- Validation steps after publishing:
+  - Open page source and confirm one `application/ld+json` block is present.
+  - Validate JSON-LD syntax in Rich Results Test or Schema Markup Validator.
+  - Re-run verifier: `npm run verify` and confirm JSON-LD count is no longer zero for this URL.
 
-## 3) https://www.distilledfunding.com/industries/wix-seller-financing
+## Page: https://www.distilledfunding.com/industries/wix-seller-financing
 
 - URL: `https://www.distilledfunding.com/industries/wix-seller-financing`
 - Issue:
   - Missing JSON-LD
-- Current risk:
-  - Template candidate page is schema-empty, weakening future template rollout quality.
-- Exact recommended page-level fix:
-  - Add one reusable page-level JSON-LD block (`WebPage`) for industry template pages.
-- Exact meta description draft where needed:
-  - No change required in this pack (meta description already present in verification output).
-- Exact JSON-LD recommendation:
+- Why it matters:
+  - Template candidate page is schema-empty and weak for future scalable rollouts.
+- Exact Wix implementation location:
+  - JSON-LD: `Wix Dashboard -> Pages & Menu -> Wix Seller Financing page -> Advanced SEO -> Structured data markup`
+  - Fallback if needed: `Wix Dashboard -> Settings -> Custom Code` (target this URL only)
+- Exact recommended fix:
+  - Add one minimal `WebPage` JSON-LD block and use this pattern for future `/industries/*` pages.
+- Ready-to-paste meta description if needed:
+  - No update needed in this fix pack (meta description already exists from verification run).
+- Ready-to-paste JSON-LD:
 
 ```json
 {
@@ -105,14 +115,18 @@ Scope: First live remediation pass for the highest-priority Phase 0 pages.
 }
 ```
 
-- Implementation notes (Wix):
-  - Add structured data on this page first, then copy pattern to future `/industries/*` pages.
-  - Keep `name`, `url`, and `description` page-specific when reusing the pattern.
+- Manual completion fields:
+  - None required for this minimal valid block.
+- Validation steps after publishing:
+  - Open page source and confirm one `application/ld+json` block is present.
+  - Validate JSON-LD syntax in Rich Results Test or Schema Markup Validator.
+  - Re-run verifier: `npm run verify` and confirm JSON-LD count is no longer zero for this URL.
 
-## Do not change yet
+## Hold / Validate Before Editing
 
-- Robots-meta policy:
-  - Verification flagged missing robots meta, but this is not automatically a defect.
-  - Do not add robots meta tags until indexation policy is explicitly decided.
-- Legacy blog URL disposition:
-  - Do not redirect or noindex `/post/warp-speed-mortgage-review` until keep/merge/redirect decision is approved.
+- Robots meta policy (`https://www.distilledfunding.com/` and other sampled URLs):
+  - Do not add robots meta tags automatically.
+  - First confirm indexation policy and whether directives are needed at page level.
+- Legacy blog URL disposition (`https://www.distilledfunding.com/post/warp-speed-mortgage-review`):
+  - Do not redirect, noindex, or canonical-shift automatically.
+  - Complete keep/merge/redirect decision first.
