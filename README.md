@@ -67,10 +67,8 @@ Behavior:
 
 ## Current Status
 
-- Phase 0 scaffold complete.
-- First real verification run complete.
-- Audit data layer seeded.
-- Next focus: live site remediation in Wix.
+- Phase 0 core remediation complete.
+- Two open follow-up items remain: robots meta validation and legacy URL disposition.
 - Latest verification reports: `reports/url-verification.csv` and `reports/url-verification.md`.
 
 ## Phase 0 Audit Tracking Files
