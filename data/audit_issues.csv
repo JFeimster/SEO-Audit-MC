@@ -1,6 +1,7 @@
-issue_id,url,page_type,issue_type,severity,owner,status,recommended_action,notes
-MC-001,https://www.distilledfunding.com/,homepage,robots_meta_missing,medium,seo-ops,open,define_and_apply_sitewide_robots_meta_policy,Robots meta missing in first-pass sample set
-MC-002,https://www.distilledfunding.com/privacy-policy,trust,meta_description_missing,high,seo-ops,open,add_unique_meta_description,Trust page missing description in verification output
-MC-003,https://www.distilledfunding.com/privacy-policy,trust,jsonld_missing,medium,seo-ops,open,add_basic_webpage_or_about_schema,No JSON-LD detected
-MC-004,https://www.distilledfunding.com/revenuebased,money_page,jsonld_missing,high,seo-ops,open,add_money_page_relevant_schema,No JSON-LD detected on primary money page
-MC-005,https://www.distilledfunding.com/industries/wix-seller-financing,industry_template,jsonld_missing,medium,seo-ops,open,add_template_level_jsonld_requirements,No JSON-LD detected on template candidate
+issue_id,url,page_type,issue_type,severity,status,recommended_action,owner,notes
+MC-001,https://www.distilledfunding.com/privacy-policy,trust,meta_description_missing,high,open,add_unique_meta_description_for_trust_page,seo-ops,Missing in verification output
+MC-002,https://www.distilledfunding.com/revenuebased,money_page,jsonld_missing,high,open,add_financialservice_or_webpage_jsonld,seo-ops,Primary money page has zero JSON-LD blocks
+MC-003,https://www.distilledfunding.com/privacy-policy,trust,jsonld_missing,medium,open,add_basic_webpage_or_aboutpage_jsonld,seo-ops,Trust page has zero JSON-LD blocks
+MC-004,https://www.distilledfunding.com/industries/wix-seller-financing,industry_template,jsonld_missing,medium,open,add_template_level_jsonld_for_industry_pages,seo-ops,Template candidate has zero JSON-LD blocks
+MC-005,https://www.distilledfunding.com/,homepage,robots_meta_missing_validation,low,open,validate_indexing_policy_before_adding_robots_meta,seo-ops,Missing robots meta is not always a defect
+MC-006,https://www.distilledfunding.com/post/warp-speed-mortgage-review,legacy_blog,legacy_url_intent_triage,medium,open,decide_keep_merge_or_redirect_after_content_review,seo-ops,Likely weak/off-intent URL from inventory review

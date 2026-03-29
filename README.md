@@ -67,9 +67,11 @@ Behavior:
 
 ## Current Status
 
-- Verification has been run.
-- Reports are in `reports/url-verification.csv` and `reports/url-verification.md`.
-- Latest run used real URLs from `data/five_url_verification.csv` (not fallback mode).
+- Phase 0 scaffold complete.
+- First real verification run complete.
+- Audit data layer seeded.
+- Next focus: live site remediation in Wix.
+- Latest verification reports: `reports/url-verification.csv` and `reports/url-verification.md`.
 
 ## Phase 0 Audit Tracking Files
 
