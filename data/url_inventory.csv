@@ -1,1 +1,6 @@
-url,page_type,status_code,index_state,canonical_target,owner,action,notes
+url,page_type,target_keyword,indexability,canonical_target,issue_type,severity,owner,status,recommended_action,notes
+https://www.distilledfunding.com/,homepage,business funding,unknown,https://www.distilledfunding.com/,verification_pending,medium,seo-ops,open,run_phase0_verification,Seeded for first pass benchmark
+https://www.distilledfunding.com/privacy-policy,trust,privacy policy moonshine capital,unknown,https://www.distilledfunding.com/privacy-policy,trust_anchor_review,medium,seo-ops,open,confirm_canonical_and_disclosure_freshness,Last updated date should be reviewed
+https://www.distilledfunding.com/revenuebased,money_page,revenue based financing,unknown,https://www.distilledfunding.com/revenuebased,conversion_page_qa,high,seo-ops,open,validate_metadata_schema_and_canonical,High-value page
+https://www.distilledfunding.com/post/warp-speed-mortgage-review,legacy_blog,warp speed mortgage review,unknown,,legacy_content_triage,high,seo-ops,open,decide_keep_merge_or_redirect,Potential weak or off-intent URL
+https://www.distilledfunding.com/industries/wix-seller-financing,industry_template,wix seller financing,unknown,https://www.distilledfunding.com/industries/wix-seller-financing,template_governance,medium,seo-ops,open,use_as_candidate_for_scaled_template_qa,Future template candidate

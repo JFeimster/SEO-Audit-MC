@@ -1,1 +1,6 @@
-issue_id,category,severity,status,summary,evidence,recommended_action,owner,opened_date,due_date,resolved_date,notes
+issue_id,url,page_type,issue_type,severity,owner,status,recommended_action,notes
+MC-001,https://www.distilledfunding.com/,homepage,robots_meta_missing,medium,seo-ops,open,define_and_apply_sitewide_robots_meta_policy,Robots meta missing in first-pass sample set
+MC-002,https://www.distilledfunding.com/privacy-policy,trust,meta_description_missing,high,seo-ops,open,add_unique_meta_description,Trust page missing description in verification output
+MC-003,https://www.distilledfunding.com/privacy-policy,trust,jsonld_missing,medium,seo-ops,open,add_basic_webpage_or_about_schema,No JSON-LD detected
+MC-004,https://www.distilledfunding.com/revenuebased,money_page,jsonld_missing,high,seo-ops,open,add_money_page_relevant_schema,No JSON-LD detected on primary money page
+MC-005,https://www.distilledfunding.com/industries/wix-seller-financing,industry_template,jsonld_missing,medium,seo-ops,open,add_template_level_jsonld_requirements,No JSON-LD detected on template candidate

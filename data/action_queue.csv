@@ -1,1 +1,6 @@
-task_id,category,priority,asset,owner,status,next_step,notes
+task_id,url,page_type,issue_type,severity,owner,status,recommended_action,notes
+AQ-001,https://www.distilledfunding.com/,homepage,phase0_verification,high,seo-ops,in_progress,run_verify_and_capture_failures,Execution task for baseline
+AQ-002,https://www.distilledfunding.com/privacy-policy,trust,canonical_disclosure_check,medium,seo-ops,open,confirm_canonical_and_update_if_missing,Trust anchor needs hard checks
+AQ-003,https://www.distilledfunding.com/revenuebased,money_page,money_page_qa,high,seo-ops,open,review_title_meta_canonical_schema,Primary revenue page
+AQ-004,https://www.distilledfunding.com/post/warp-speed-mortgage-review,legacy_blog,weak_url_triage,high,seo-ops,open,determine_redirect_or_rework_path,Weak/junk candidate
+AQ-005,https://www.distilledfunding.com/industries/wix-seller-financing,industry_template,template_governance,medium,seo-ops,open,document_template_requirements_and_checks,Future page-type candidate

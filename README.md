@@ -65,6 +65,12 @@ Behavior:
   - `reports/url-verification.md`
 - Exits with a non-zero status when any URL has status not `200`, missing title, or missing canonical.
 
+## Current Status
+
+- Verification has been run.
+- Reports are in `reports/url-verification.csv` and `reports/url-verification.md`.
+- Latest run used real URLs from `data/five_url_verification.csv` (not fallback mode).
+
 ## Phase 0 Audit Tracking Files
 
 - `data/audit_issues.csv`: master list of normalized audit findings with severity, status, ownership, and due dates.
