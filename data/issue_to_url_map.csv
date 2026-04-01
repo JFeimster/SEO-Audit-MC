@@ -1,1 +1,2 @@
 issue_id,url,page_type,impact_scope,canonical_url,index_state,priority,status,owner,notes
+MC-006,https://www.distilledfunding.com/post/warp-speed-mortgage-review,legacy_blog,single_url,https://www.distilledfunding.com/post/warp-speed-mortgage-review,indexable,medium,verified_fixed,seo-ops,Disposition keep; needs explicit business-owner target mapping if redirect/merge pursued later

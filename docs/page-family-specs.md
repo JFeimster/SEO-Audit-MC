@@ -92,6 +92,7 @@ Input note: `docs/phase-1-kickoff.md` was not present in this checkout on 2026-0
    - disclosure block present
 6. Verification gate:
    - included in next representative URL verification batch and passes
+   - Phase 0 Dependency Note: must pass strict governance checks in `npm run qa` before publish
 
 ### Disallowed Shortcuts
 

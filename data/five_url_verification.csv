@@ -1,6 +1,6 @@
 url,page_type,target_keyword,indexability,canonical_target,owner,status,recommended_action,notes
-https://www.distilledfunding.com/,homepage,business funding,unknown,https://www.distilledfunding.com/,seo-ops,queued,run_verification,Primary homepage for baseline checks
-https://www.distilledfunding.com/privacy-policy,trust,privacy policy moonshine capital,unknown,https://www.distilledfunding.com/privacy-policy,seo-ops,queued,run_verification,Trust page sample
-https://www.distilledfunding.com/revenuebased,money_page,revenue based financing,unknown,https://www.distilledfunding.com/revenuebased,seo-ops,queued,run_verification,Primary service page
-https://www.distilledfunding.com/post/warp-speed-mortgage-review,legacy_blog,warp speed mortgage review,unknown,,seo-ops,queued,run_verification,Likely weak legacy URL for triage
-https://www.distilledfunding.com/industries/wix-seller-financing,industry_template,wix seller financing,unknown,https://www.distilledfunding.com/industries/wix-seller-financing,seo-ops,queued,run_verification,Candidate future template type
+https://www.distilledfunding.com/,homepage,business funding,unknown,https://www.distilledfunding.com/,seo-ops,verified,keep_in_weekly_verification_cycle,Verification passed critical checks
+https://www.distilledfunding.com/privacy-policy,trust,privacy policy moonshine capital,unknown,https://www.distilledfunding.com/privacy-policy,seo-ops,verified,keep_in_weekly_verification_cycle,Verification passed critical checks
+https://www.distilledfunding.com/revenuebased,money_page,revenue based financing,unknown,https://www.distilledfunding.com/revenuebased,seo-ops,verified,keep_in_weekly_verification_cycle,Verification passed critical checks
+https://www.distilledfunding.com/post/warp-speed-mortgage-review,legacy_blog,warp speed mortgage review,unknown,https://www.distilledfunding.com/post/warp-speed-mortgage-review,seo-ops,verified,keep_in_weekly_verification_cycle,Verification passed critical checks
+https://www.distilledfunding.com/industries/wix-seller-financing,industry_template,wix seller financing,unknown,https://www.distilledfunding.com/industries/wix-seller-financing,seo-ops,verified,keep_in_weekly_verification_cycle,Verification passed critical checks
