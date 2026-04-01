@@ -1,13 +1,26 @@
 # Phase 1 Execution Checklists
 
+## Wave 1 Execution Tracking (Industry Pages)
+
+- Latest execution tracker CSV: `data/phase1_wave1_execution_tracking.csv`
+- Latest Wave 1 next-actions brief: `docs/phase-1-wave1-next-actions.md`
+- Latest seed validation report: `reports/wix-industry-implementation-verification.md` (`npm run verify:wix` run on `2026-04-01`, errors `0`, warnings `0`)
+- Latest live binding report: `reports/wix-wave1-live-binding-verification.md` (`npm run verify:wix:live` run on `2026-04-01`, errors `15`, warnings `4`)
+- Dynamic binding hotfix runbook: `docs/wix-wave1-dynamic-binding-hotfix.md`
+- Wave 1 editor value sheet: `reports/wix-wave1-editor-binding-sheet.csv`
+- Exact Wix UI `industryPageRef` operator checklist: `docs/wix-wave1-industryPageRef-mapping-checklist.md`
+- Scope note: tracking is intentionally limited to Wave 1 (`batch_01`) and does not recreate candidate planning artifacts.
+
 ## Industry Pages Family To-Do Checklist (15 Tasks)
 
 - [ ] Finalize Wix CMS collections in production (`industryPages`, `industryFaqs`, `industryModules`, `industryLinks`) using `docs/wix-cms-industry-schema.md`.
 - [ ] Generate fresh seed files from source of truth with `npm run wix:seed`.
+- [ ] Run `npm run verify:wix` and resolve any binding-blocking errors before import.
 - [ ] Import seed files in required order per `docs/wix-cms-industry-import-runbook.md`.
 - [ ] Resolve `industryPageRef` in supporting collections by matching `industrySlug` to `industryPages.slug`.
 - [ ] Build and bind the dynamic route `/industries/{slug}`.
 - [ ] Bind dynamic SEO controls (title, meta description, canonical, OG, robots).
+- [ ] Verify dynamic template bindings in Wix editor (hero/H1/body/CTA + repeater filters by `industryPageRef` + publish gate logic).
 - [ ] Enforce publish gates so pages cannot publish when `publishReady=false` or QA booleans are incomplete.
 - [ ] Complete Wave 1 content for `batch_01` slugs (`wix-seller-financing`, `ecommerce-business-funding`, `restaurant-funding`, `trucking-funding`, `construction-contractor-funding`).
 - [ ] Complete QA booleans for each Wave 1 page (`metadataApproved`, `schemaApproved`, `linksApproved`, `disclosureApproved`, `contentApproved`, `qaPass`).

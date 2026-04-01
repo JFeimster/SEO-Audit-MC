@@ -1,46 +1,46 @@
 industrySlug,industryPageRef,linkType,linkLabel,linkUrl,isRequired,sortOrder,isActive
-/industries/wix-seller-financing,,service_page,Revenue-Based Financing,/revenuebased,true,1,true
-/industries/wix-seller-financing,,trust_page,Privacy Policy,/privacy-policy,true,2,true
-/industries/wix-seller-financing,,sibling_industry,Funding for Ecommerce Business Operators,/industries/ecommerce-business-funding,true,3,true
-/industries/ecommerce-business-funding,,service_page,Revenue-Based Financing,/revenuebased,true,1,true
-/industries/ecommerce-business-funding,,trust_page,Privacy Policy,/privacy-policy,true,2,true
-/industries/ecommerce-business-funding,,sibling_industry,Funding for Restaurant Operators,/industries/restaurant-funding,true,3,true
-/industries/restaurant-funding,,service_page,Revenue-Based Financing,/revenuebased,true,1,true
-/industries/restaurant-funding,,trust_page,Privacy Policy,/privacy-policy,true,2,true
-/industries/restaurant-funding,,sibling_industry,Funding for Trucking Operators,/industries/trucking-funding,true,3,true
-/industries/trucking-funding,,service_page,Revenue-Based Financing,/revenuebased,true,1,true
-/industries/trucking-funding,,trust_page,Privacy Policy,/privacy-policy,true,2,true
-/industries/trucking-funding,,sibling_industry,Funding for Construction Contractor Operators,/industries/construction-contractor-funding,true,3,true
-/industries/construction-contractor-funding,,service_page,Revenue-Based Financing,/revenuebased,true,1,true
-/industries/construction-contractor-funding,,trust_page,Privacy Policy,/privacy-policy,true,2,true
-/industries/construction-contractor-funding,,sibling_industry,Funding for Medical Practice Operators,/industries/medical-practice-funding,true,3,true
-/industries/medical-practice-funding,,service_page,Revenue-Based Financing,/revenuebased,true,1,true
-/industries/medical-practice-funding,,trust_page,Privacy Policy,/privacy-policy,true,2,true
-/industries/medical-practice-funding,,sibling_industry,Funding for Dental Practice Operators,/industries/dental-practice-funding,true,3,true
-/industries/dental-practice-funding,,service_page,Revenue-Based Financing,/revenuebased,true,1,true
-/industries/dental-practice-funding,,trust_page,Privacy Policy,/privacy-policy,true,2,true
-/industries/dental-practice-funding,,sibling_industry,Funding for Veterinary Practice Operators,/industries/veterinary-practice-funding,true,3,true
-/industries/veterinary-practice-funding,,service_page,Revenue-Based Financing,/revenuebased,true,1,true
-/industries/veterinary-practice-funding,,trust_page,Privacy Policy,/privacy-policy,true,2,true
-/industries/veterinary-practice-funding,,sibling_industry,Funding for Auto Repair Shop Operators,/industries/auto-repair-shop-funding,true,3,true
-/industries/auto-repair-shop-funding,,service_page,Revenue-Based Financing,/revenuebased,true,1,true
-/industries/auto-repair-shop-funding,,trust_page,Privacy Policy,/privacy-policy,true,2,true
-/industries/auto-repair-shop-funding,,sibling_industry,Funding for Salon Spa Business Operators,/industries/salon-spa-business-funding,true,3,true
-/industries/salon-spa-business-funding,,service_page,Revenue-Based Financing,/revenuebased,true,1,true
-/industries/salon-spa-business-funding,,trust_page,Privacy Policy,/privacy-policy,true,2,true
-/industries/salon-spa-business-funding,,sibling_industry,Funding for Wholesale Distributor Operators,/industries/wholesale-distributor-funding,true,3,true
-/industries/wholesale-distributor-funding,,service_page,Revenue-Based Financing,/revenuebased,true,1,true
-/industries/wholesale-distributor-funding,,trust_page,Privacy Policy,/privacy-policy,true,2,true
-/industries/wholesale-distributor-funding,,sibling_industry,Funding for Manufacturing Business Operators,/industries/manufacturing-business-funding,true,3,true
-/industries/manufacturing-business-funding,,service_page,Revenue-Based Financing,/revenuebased,true,1,true
-/industries/manufacturing-business-funding,,trust_page,Privacy Policy,/privacy-policy,true,2,true
-/industries/manufacturing-business-funding,,sibling_industry,Funding for Staffing Agency Operators,/industries/staffing-agency-funding,true,3,true
-/industries/staffing-agency-funding,,service_page,Revenue-Based Financing,/revenuebased,true,1,true
-/industries/staffing-agency-funding,,trust_page,Privacy Policy,/privacy-policy,true,2,true
-/industries/staffing-agency-funding,,sibling_industry,Funding for Law Firm Operators,/industries/law-firm-funding,true,3,true
-/industries/law-firm-funding,,service_page,Revenue-Based Financing,/revenuebased,true,1,true
-/industries/law-firm-funding,,trust_page,Privacy Policy,/privacy-policy,true,2,true
-/industries/law-firm-funding,,sibling_industry,Funding for Home Services Operators,/industries/home-services-funding,true,3,true
-/industries/home-services-funding,,service_page,Revenue-Based Financing,/revenuebased,true,1,true
-/industries/home-services-funding,,trust_page,Privacy Policy,/privacy-policy,true,2,true
-/industries/home-services-funding,,sibling_industry,Funding for Wix Seller Operators,/industries/wix-seller-financing,true,3,true
+wix-seller-financing,,service_page,Revenue-Based Financing,/revenuebased,true,1,true
+wix-seller-financing,,trust_page,Privacy Policy,/privacy-policy,true,2,true
+wix-seller-financing,,sibling_industry,Funding for Ecommerce Business Operators,/industries/ecommerce-business-funding,true,3,true
+ecommerce-business-funding,,service_page,Revenue-Based Financing,/revenuebased,true,1,true
+ecommerce-business-funding,,trust_page,Privacy Policy,/privacy-policy,true,2,true
+ecommerce-business-funding,,sibling_industry,Funding for Restaurant Operators,/industries/restaurant-funding,true,3,true
+restaurant-funding,,service_page,Revenue-Based Financing,/revenuebased,true,1,true
+restaurant-funding,,trust_page,Privacy Policy,/privacy-policy,true,2,true
+restaurant-funding,,sibling_industry,Funding for Trucking Operators,/industries/trucking-funding,true,3,true
+trucking-funding,,service_page,Revenue-Based Financing,/revenuebased,true,1,true
+trucking-funding,,trust_page,Privacy Policy,/privacy-policy,true,2,true
+trucking-funding,,sibling_industry,Funding for Construction Contractor Operators,/industries/construction-contractor-funding,true,3,true
+construction-contractor-funding,,service_page,Revenue-Based Financing,/revenuebased,true,1,true
+construction-contractor-funding,,trust_page,Privacy Policy,/privacy-policy,true,2,true
+construction-contractor-funding,,sibling_industry,Funding for Wix Seller Operators,/industries/wix-seller-financing,true,3,true
+medical-practice-funding,,service_page,Revenue-Based Financing,/revenuebased,true,1,true
+medical-practice-funding,,trust_page,Privacy Policy,/privacy-policy,true,2,true
+medical-practice-funding,,sibling_industry,Funding for Dental Practice Operators,/industries/dental-practice-funding,true,3,true
+dental-practice-funding,,service_page,Revenue-Based Financing,/revenuebased,true,1,true
+dental-practice-funding,,trust_page,Privacy Policy,/privacy-policy,true,2,true
+dental-practice-funding,,sibling_industry,Funding for Veterinary Practice Operators,/industries/veterinary-practice-funding,true,3,true
+veterinary-practice-funding,,service_page,Revenue-Based Financing,/revenuebased,true,1,true
+veterinary-practice-funding,,trust_page,Privacy Policy,/privacy-policy,true,2,true
+veterinary-practice-funding,,sibling_industry,Funding for Auto Repair Shop Operators,/industries/auto-repair-shop-funding,true,3,true
+auto-repair-shop-funding,,service_page,Revenue-Based Financing,/revenuebased,true,1,true
+auto-repair-shop-funding,,trust_page,Privacy Policy,/privacy-policy,true,2,true
+auto-repair-shop-funding,,sibling_industry,Funding for Salon Spa Business Operators,/industries/salon-spa-business-funding,true,3,true
+salon-spa-business-funding,,service_page,Revenue-Based Financing,/revenuebased,true,1,true
+salon-spa-business-funding,,trust_page,Privacy Policy,/privacy-policy,true,2,true
+salon-spa-business-funding,,sibling_industry,Funding for Medical Practice Operators,/industries/medical-practice-funding,true,3,true
+wholesale-distributor-funding,,service_page,Revenue-Based Financing,/revenuebased,true,1,true
+wholesale-distributor-funding,,trust_page,Privacy Policy,/privacy-policy,true,2,true
+wholesale-distributor-funding,,sibling_industry,Funding for Manufacturing Business Operators,/industries/manufacturing-business-funding,true,3,true
+manufacturing-business-funding,,service_page,Revenue-Based Financing,/revenuebased,true,1,true
+manufacturing-business-funding,,trust_page,Privacy Policy,/privacy-policy,true,2,true
+manufacturing-business-funding,,sibling_industry,Funding for Staffing Agency Operators,/industries/staffing-agency-funding,true,3,true
+staffing-agency-funding,,service_page,Revenue-Based Financing,/revenuebased,true,1,true
+staffing-agency-funding,,trust_page,Privacy Policy,/privacy-policy,true,2,true
+staffing-agency-funding,,sibling_industry,Funding for Law Firm Operators,/industries/law-firm-funding,true,3,true
+law-firm-funding,,service_page,Revenue-Based Financing,/revenuebased,true,1,true
+law-firm-funding,,trust_page,Privacy Policy,/privacy-policy,true,2,true
+law-firm-funding,,sibling_industry,Funding for Home Services Operators,/industries/home-services-funding,true,3,true
+home-services-funding,,service_page,Revenue-Based Financing,/revenuebased,true,1,true
+home-services-funding,,trust_page,Privacy Policy,/privacy-policy,true,2,true
+home-services-funding,,sibling_industry,Funding for Wholesale Distributor Operators,/industries/wholesale-distributor-funding,true,3,true

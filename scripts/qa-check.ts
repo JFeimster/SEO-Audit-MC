@@ -24,6 +24,39 @@ function reportFailure(message: string) {
   criticalFailures++;
 }
 
+function parseCsvLine(line: string): string[] {
+  const values: string[] = [];
+  let current = "";
+  let inQuotes = false;
+
+  for (let i = 0; i < line.length; i++) {
+    const char = line[i];
+    const next = line[i + 1];
+
+    if (char === '"' && inQuotes && next === '"') {
+      current += '"';
+      i++;
+      continue;
+    }
+
+    if (char === '"') {
+      inQuotes = !inQuotes;
+      continue;
+    }
+
+    if (char === "," && !inQuotes) {
+      values.push(current);
+      current = "";
+      continue;
+    }
+
+    current += char;
+  }
+
+  values.push(current);
+  return values;
+}
+
 function parseCsv(content: string): { headers: string[]; rows: Record<string, string>[] } {
   const normalized = content.replace(/\r\n/g, "\n").trim();
   if (!normalized) return { headers: [], rows: [] };
@@ -31,36 +64,11 @@ function parseCsv(content: string): { headers: string[]; rows: Record<string, st
   const lines = normalized.split("\n").filter((line) => line.trim() !== "");
   if (lines.length === 0) return { headers: [], rows: [] };
 
-  const headers = lines[0].split(",").map((h) => h.trim());
+  const headers = parseCsvLine(lines[0]).map((h) => h.trim());
   const rows: Record<string, string>[] = [];
 
   for (let i = 1; i < lines.length; i++) {
-    const values: string[] = [];
-    let current = "";
-    let inQuotes = false;
-    const line = lines[i];
-
-    for (let j = 0; j < line.length; j++) {
-      const char = line[j];
-      const next = line[j + 1];
-
-      if (char === '"' && inQuotes && next === '"') {
-        current += '"';
-        j++;
-        continue;
-      }
-      if (char === '"') {
-        inQuotes = !inQuotes;
-        continue;
-      }
-      if (char === "," && !inQuotes) {
-        values.push(current);
-        current = "";
-        continue;
-      }
-      current += char;
-    }
-    values.push(current);
+    const values = parseCsvLine(lines[i]);
 
     const row: Record<string, string> = {};
     for (let j = 0; j < headers.length; j++) {

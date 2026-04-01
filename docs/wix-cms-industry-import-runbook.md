@@ -17,6 +17,14 @@ This creates:
 - `data/wix_industryModules_seed.csv`
 - `data/wix_industryLinks_seed.csv`
 
+Then run:
+
+```bash
+npm run verify:wix
+```
+
+and confirm the report shows `Errors: 0` before importing.
+
 ## Import Order (Exact)
 
 1. Import `wix_industryPages_seed.csv` into collection `industryPages`.
@@ -30,13 +38,13 @@ Do not publish any dynamic industry page during import.
 
 `industryFaqs`, `industryModules`, and `industryLinks` include:
 
-- `industrySlug` (filled)
+- `industrySlug` (filled with normalized slug key, for example `restaurant-funding`)
 - `industryPageRef` (blank by design)
 
 After importing:
 
 1. In Wix CMS, filter each supporting collection by `industrySlug`.
-2. Set `industryPageRef` to the matching row in `industryPages` (matching `slug`).
+2. Set `industryPageRef` to the matching row in `industryPages` (matching the exact `slug` key).
 3. Keep `isActive = true` only for records ready to render.
 
 ## Status and Gate Initialization
@@ -64,6 +72,14 @@ Start with `batch_01` rows in `industryPages`:
 - `restaurant-funding`
 - `trucking-funding`
 - `construction-contractor-funding`
+
+If you are importing Wave 1 only, use:
+
+- `docs/wix-cms-wave1-import-checklist.md`
+- `data/wix_wave1_industryPages_seed.csv`
+- `data/wix_wave1_industryFaqs_seed.csv`
+- `data/wix_wave1_industryModules_seed.csv`
+- `data/wix_wave1_industryLinks_seed.csv`
 
 Run QA gates before status changes:
 

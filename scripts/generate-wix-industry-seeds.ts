@@ -185,6 +185,14 @@ function slugToIndustryLabel(slug: string): string {
     .join(" ");
 }
 
+function normalizeIndustrySlug(slug: string): string {
+  return slug.replace(/^\/industries\//, "").trim();
+}
+
+function toIndustryPath(slug: string): string {
+  return `/industries/${normalizeIndustrySlug(slug)}`;
+}
+
 function titleCase(input: string): string {
   return input
     .split(/\s+/)
@@ -212,21 +220,48 @@ function getSiblingFallback(currentSlug: string, allSlugs: string[]): string {
   return fallback ?? "/industries/wix-seller-financing";
 }
 
+function getSiblingInPreferredPool(currentSlug: string, preferredSlugs: string[], allSlugs: string[]): string {
+  const pool = preferredSlugs.length > 1 ? preferredSlugs : allSlugs;
+  const currentIndex = pool.indexOf(currentSlug);
+
+  if (currentIndex >= 0) {
+    const siblingIndex = (currentIndex + 1) % pool.length;
+    const siblingSlug = pool[siblingIndex];
+    if (siblingSlug && siblingSlug !== currentSlug) {
+      return siblingSlug;
+    }
+  }
+
+  return getSiblingFallback(currentSlug, allSlugs);
+}
+
 function buildIndustryPagesRows(candidates: RolloutCandidate[]): string[][] {
-  const allSlugs = candidates.map((candidate) => candidate.slug);
+  const allSlugPaths = candidates.map((candidate) => toIndustryPath(candidate.slug));
+  const slugsByBatch = new Map<string, string[]>();
+
+  for (const candidate of candidates) {
+    const batch = launchBatch(priorityToNumber(candidate.priority));
+    const current = slugsByBatch.get(batch) ?? [];
+    current.push(toIndustryPath(candidate.slug));
+    slugsByBatch.set(batch, current);
+  }
 
   return candidates.map((candidate) => {
-    const industryLabel = slugToIndustryLabel(candidate.slug);
+    const normalizedSlug = normalizeIndustrySlug(candidate.slug);
+    const industryPath = toIndustryPath(candidate.slug);
+    const batch = launchBatch(priorityToNumber(candidate.priority));
+    const batchSlugs = slugsByBatch.get(batch) ?? [];
+    const industryLabel = slugToIndustryLabel(normalizedSlug);
     const keywordLabel = titleCase(candidate.primary_keyword);
     const priorityNumber = priorityToNumber(candidate.priority);
-    const canonicalUrl = `https://www.distilledfunding.com${candidate.slug}`;
+    const canonicalUrl = `https://www.distilledfunding.com${industryPath}`;
     const metaDescription = `Explore funding options for ${industryLabel.toLowerCase()} operators with Distilled Funding by Moonshine Capital. Review use cases, requirements, and apply when ready.`;
     const blockerReason = "Seeded from phase1 rollout candidates. Complete media, content, metadata, schema, links, and disclosure QA before publish.";
     const schemaTypes = candidate.schema_type.replaceAll("|", ",");
 
     return [
       keywordLabel,
-      candidate.slug.replace(/^\/industries\//, ""),
+      normalizedSlug,
       candidate.status,
       candidate.page_family,
       String(priorityNumber),
@@ -255,7 +290,7 @@ function buildIndustryPagesRows(candidates: RolloutCandidate[]): string[][] {
       "/contact",
       "/revenuebased",
       "/privacy-policy",
-      getSiblingFallback(candidate.slug, allSlugs),
+      getSiblingInPreferredPool(industryPath, batchSlugs, allSlugPaths),
       `${keywordLabel} | Distilled Funding by Moonshine Capital`,
       metaDescription,
       canonicalUrl,
@@ -285,12 +320,13 @@ function buildIndustryPagesRows(candidates: RolloutCandidate[]): string[][] {
 
 function buildFaqRows(candidates: RolloutCandidate[]): string[][] {
   return candidates.flatMap((candidate) => {
+    const industrySlug = normalizeIndustrySlug(candidate.slug);
     const industryLabel = slugToIndustryLabel(candidate.slug);
     const sourceNote = "Seeded placeholder. Replace with reviewed, factual copy before publish.";
 
     return [
       [
-        candidate.slug,
+        industrySlug,
         "",
         `How is funding used by ${industryLabel.toLowerCase()} businesses?`,
         `TODO: Add practical use-of-funds examples for ${industryLabel.toLowerCase()} operators.`,
@@ -300,7 +336,7 @@ function buildFaqRows(candidates: RolloutCandidate[]): string[][] {
         sourceNote
       ],
       [
-        candidate.slug,
+        industrySlug,
         "",
         `What does Distilled Funding review for ${industryLabel.toLowerCase()} applicants?`,
         `TODO: Add factual qualification criteria and required documentation details.`,
@@ -310,7 +346,7 @@ function buildFaqRows(candidates: RolloutCandidate[]): string[][] {
         sourceNote
       ],
       [
-        candidate.slug,
+        industrySlug,
         "",
         `How quickly can a ${industryLabel.toLowerCase()} business move from application to funding review?`,
         "TODO: Add timeline language that is accurate and non-promissory.",
@@ -320,7 +356,7 @@ function buildFaqRows(candidates: RolloutCandidate[]): string[][] {
         sourceNote
       ],
       [
-        candidate.slug,
+        industrySlug,
         "",
         `What should ${industryLabel.toLowerCase()} owners prepare before applying?`,
         "TODO: Add checklist-based preparation guidance aligned with actual process.",
@@ -335,11 +371,12 @@ function buildFaqRows(candidates: RolloutCandidate[]): string[][] {
 
 function buildModuleRows(candidates: RolloutCandidate[]): string[][] {
   return candidates.flatMap((candidate) => {
+    const industrySlug = normalizeIndustrySlug(candidate.slug);
     const industryLabel = slugToIndustryLabel(candidate.slug);
 
     return [
       [
-        candidate.slug,
+        industrySlug,
         "",
         "use_of_funds_card",
         `Common funding uses in ${industryLabel}`,
@@ -355,7 +392,7 @@ function buildModuleRows(candidates: RolloutCandidate[]): string[][] {
         "true"
       ],
       [
-        candidate.slug,
+        industrySlug,
         "",
         "qualification_card",
         `What ${industryLabel} operators should have ready`,
@@ -371,7 +408,7 @@ function buildModuleRows(candidates: RolloutCandidate[]): string[][] {
         "true"
       ],
       [
-        candidate.slug,
+        industrySlug,
         "",
         "process_card",
         "How the review process works",
@@ -391,13 +428,22 @@ function buildModuleRows(candidates: RolloutCandidate[]): string[][] {
 }
 
 function buildLinkRows(candidates: RolloutCandidate[]): string[][] {
-  const slugs = candidates.map((candidate) => candidate.slug);
+  const slugPaths = candidates.map((candidate) => toIndustryPath(candidate.slug));
+  const slugsByBatch = new Map<string, string[]>();
+
+  for (const candidate of candidates) {
+    const batch = launchBatch(priorityToNumber(candidate.priority));
+    const current = slugsByBatch.get(batch) ?? [];
+    current.push(toIndustryPath(candidate.slug));
+    slugsByBatch.set(batch, current);
+  }
 
   return candidates.flatMap((candidate) => {
-    const currentSlug = candidate.slug;
-    const currentIndex = slugs.indexOf(currentSlug);
-    const siblingIndex = (currentIndex + 1) % slugs.length;
-    const siblingSlug = slugs[siblingIndex] ?? "/industries/wix-seller-financing";
+    const currentSlug = normalizeIndustrySlug(candidate.slug);
+    const currentSlugPath = toIndustryPath(candidate.slug);
+    const batch = launchBatch(priorityToNumber(candidate.priority));
+    const batchSlugs = slugsByBatch.get(batch) ?? [];
+    const siblingSlug = getSiblingInPreferredPool(currentSlugPath, batchSlugs, slugPaths);
     const siblingLabel = slugToIndustryLabel(siblingSlug);
 
     return [
