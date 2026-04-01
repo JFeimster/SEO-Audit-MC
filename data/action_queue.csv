@@ -3,5 +3,7 @@ AQ-001,https://www.distilledfunding.com/privacy-policy,trust,meta_description_mi
 AQ-002,https://www.distilledfunding.com/revenuebased,money_page,jsonld_missing,high,seo-ops,verified_fixed,keep_in_weekly_verification_cycle,Verified fixed on 2026-03-29 post-publish
 AQ-003,https://www.distilledfunding.com/privacy-policy,trust,jsonld_missing,medium,seo-ops,verified_fixed,keep_in_weekly_verification_cycle,Verified fixed on 2026-03-29 post-publish
 AQ-004,https://www.distilledfunding.com/industries/wix-seller-financing,industry_template,jsonld_missing,medium,seo-ops,verified_fixed,keep_in_weekly_verification_cycle,Verified fixed on 2026-03-29 post-publish
-AQ-005,https://www.distilledfunding.com/,homepage,robots_meta_missing_validation,low,seo-ops,open,validate_policy_before_any_robots_meta_change,Do not treat as automatic defect
-AQ-006,https://www.distilledfunding.com/post/warp-speed-mortgage-review,legacy_blog,legacy_url_intent_triage,medium,seo-ops,open,decide_keep_merge_or_redirect,Needs live content decision
+AQ-005,https://www.distilledfunding.com/,homepage,robots_meta_missing_validation,low,seo-ops,verified_fixed,documented_policy,Policy documented: default indexable pages do not need explicit robots meta
+AQ-006,https://www.distilledfunding.com/post/warp-speed-mortgage-review,legacy_blog,legacy_url_intent_triage,medium,seo-ops,verified_fixed,keep,Disposition keep; needs explicit business-owner target mapping if redirect/merge pursued later
+AQ-007,https://www.distilledfunding.com/post/revenue-based-financing-myths-debunked,legacy_blog,content_overlap_check,medium,seo-ops,open,needs_target_mapping,Blocked by missing redirect target
+AQ-008,https://www.distilledfunding.com/services,legacy_blog,marketplace_url_intent_check,medium,seo-ops,open,needs_target_mapping,Blocked by missing redirect target

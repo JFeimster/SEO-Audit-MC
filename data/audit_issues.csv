@@ -3,5 +3,5 @@ MC-001,https://www.distilledfunding.com/privacy-policy,trust,meta_description_mi
 MC-002,https://www.distilledfunding.com/revenuebased,money_page,jsonld_missing,high,verified_fixed,keep_monitoring_in_routine_verification,seo-ops,Verified 2026-03-29: JSON-LD count 1 with Service type
 MC-003,https://www.distilledfunding.com/privacy-policy,trust,jsonld_missing,medium,verified_fixed,keep_monitoring_in_routine_verification,seo-ops,Verified 2026-03-29: JSON-LD count 1 with WebPage type
 MC-004,https://www.distilledfunding.com/industries/wix-seller-financing,industry_template,jsonld_missing,medium,verified_fixed,keep_monitoring_in_routine_verification,seo-ops,Verified 2026-03-29: JSON-LD count 1 with WebPage type
-MC-005,https://www.distilledfunding.com/,homepage,robots_meta_missing_validation,low,open,validate_indexing_policy_before_adding_robots_meta,seo-ops,Missing robots meta is not always a defect
-MC-006,https://www.distilledfunding.com/post/warp-speed-mortgage-review,legacy_blog,legacy_url_intent_triage,medium,open,decide_keep_merge_or_redirect_after_content_review,seo-ops,Likely weak/off-intent URL from inventory review
+MC-005,https://www.distilledfunding.com/,homepage,robots_meta_missing_validation,low,verified_fixed,documented_policy,seo-ops,Policy documented: default indexable pages do not need explicit robots meta
+MC-006,https://www.distilledfunding.com/post/warp-speed-mortgage-review,legacy_blog,legacy_url_intent_triage,medium,verified_fixed,keep,seo-ops,Disposition keep; needs explicit business-owner target mapping if redirect/merge pursued later

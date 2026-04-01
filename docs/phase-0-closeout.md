@@ -24,26 +24,26 @@ The following issues are now `verified_fixed` in `data/audit_issues.csv`:
 - `MC-002` `jsonld_missing` on `/revenuebased`
 - `MC-003` `jsonld_missing` on `/privacy-policy`
 - `MC-004` `jsonld_missing` on `/industries/wix-seller-financing`
+- `MC-005` `robots_meta_missing_validation` on `/`
+- `MC-006` `legacy_url_intent_triage` for `/post/warp-speed-mortgage-review`
 
 Latest verification artifacts confirm:
 
 - all 5 verification URLs returned status `200`
 - all 5 verification URLs have titles and canonicals present
 - target remediation pages now return required metadata/schema signals
+- `npm run qa` passes with strict governance logic confirming headers, required non-empty fields, and canonical/redirect schemas.
 
 ## What Remains Open
 
-- `MC-005` `robots_meta_missing_validation` (status: `open`)
-- `MC-006` `legacy_url_intent_triage` for `/post/warp-speed-mortgage-review` (status: `open`)
-
-These are follow-up policy/disposition tasks, not blockers to core Phase 0 remediation closure.
+- `AQ-007` and `AQ-008` open for missing redirect targets on legacy URLs, documented in the Phase 0 to Phase 1 Handoff Notes (`reports/phase0_to_phase1_handoff.md`).
 
 ## Recommendation: Phase 0 Completion and Phase 1 Readiness
 
-Phase 0 is complete enough to move into Phase 1.
+Phase 0 core remediation and strict QA governance is fully verified and complete.
 
 Recommendation:
 
-- proceed to Phase 1 structured rollout planning
-- keep both open follow-up items active in the action queue until explicitly resolved
-- do not auto-change robots directives without explicit indexing policy validation
+- Proceed with Phase 1 structured rollout planning.
+- Phase 1 planners should review `reports/phase0_to_phase1_handoff.md` for dependencies, robots meta policy adherence, and explicit open tracker issues (like `AQ-007` and `AQ-008`).
+- Phase 1 thread owners must map any missing redirect targets before closing out those action items.

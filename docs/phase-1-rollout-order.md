@@ -4,6 +4,8 @@ Input note: `docs/phase-1-kickoff.md` was not present in this checkout on 2026-0
 
 ## Recommended Rollout Order
 
+*Phase 0 Dependency Note: Ensure all rolled-out pages comply with `docs/robots-meta-policy.md` and pass `npm run qa` strict CSV governance.*
+
 1. Industry pages
 2. Borrower profile pages
 3. Comparison pages
