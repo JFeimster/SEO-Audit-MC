@@ -1,79 +1,119 @@
 # moonshine-seo-ops
 
-This repository is the Phase 0 SEO operations and controlled pSEO control center for **Distilled Funding by Moonshine Capital**.
+`moonshine-seo-ops` is the SEO operations control repository for **Distilled Funding by Moonshine Capital**. It governs crawl/index decisions, trust and disclosure remediation, schema quality, verification workflows, and the controlled rollout of future template-based SEO pages. The repo is designed to keep decisions explicit, operator-owned, and auditable before anything is scaled.
 
-It exists to stabilize brand, trust, crawl, schema, and publishing controls before any scaled page generation begins.
+## What This Repo Is For
 
-## Repo Purpose
+- Phase 0 SEO cleanup and remediation
+- Crawl, index, canonical, and redirect governance
+- Trust, disclosure, and brand consistency controls
+- Structured schema management and QA
+- Repeatable verification workflows and audit reporting
+- Controlled Phase 1/Wix rollout support
+- Future pSEO planning only after publishing controls are in place
 
-- Phase 0 SEO cleanup
-- Trust and disclosure remediation
-- Crawl and index control
-- Schema governance
-- Publishing QA
-- Future structured pSEO once controls are in place
+## What This Repo Is Not
 
-## Brand Bridge
+- The production website
+- A CMS replacement
+- A place to mass-generate landing pages before controls are verified
+- A source of guessed canonicals, redirects, disclosures, or trust claims
 
-- Full bridge brand: `Distilled Funding by Moonshine Capital`
-- Short form: `Distilled Funding`
+## Brand Rules
+
+- Primary bridge brand: `Distilled Funding by Moonshine Capital`
+- Allowed short form: `Distilled Funding`
 - Parent reference: `Moonshine Capital`
 - Disallowed legacy term unless explicitly quarantining a bad asset: `Capitol Accelerator`
 
-## Folder Overview
+## Operating Model
 
-- `docs/`: operating docs, architecture, Phase 0 triage, brand and blueprint rules
-- `data/`: source-of-truth CSV inventories and QA queues
-- `prompts/`: reusable operator prompts for generation, rewrite, verification, and cleanup
-- `schemas/`: editable JSON-LD starter files and templates
-- `scripts/`: small utility stubs for verification, QA, and schema workflows
-- `templates/`: controlled markdown blueprints for future page drafting
-- `reports/`: output directory for audits, QA summaries, and verification exports
+1. Read `README.md`, `TASKS.md`, and the relevant docs in `docs/`.
+2. Update source-of-truth CSVs in `data/` before generating reports or downstream assets.
+3. Keep schema files editable and mapped to explicit page intent.
+4. Use small TypeScript scripts for repeatable checks and exports.
+5. If a required canonical, disclosure, redirect target, or schema field is unknown, log the gap and stop instead of guessing.
 
-## Priority Order
+## Repository Structure
 
-1. Normalize brand identity
-2. Fix `robots.txt` / `ads.txt` split
-3. Triage junk URLs
-4. Repair trust anchors
-5. Verify 5 representative URLs
-6. Build publishing controls
-7. Only then prepare structured page generation
+- `docs/`: architecture, triage order, policy, rollout plans, Wix implementation guides, and page family specs
+- `data/`: source-of-truth CSVs for URL inventory, canonicals, redirects, issue tracking, rollout tracking, and seed inputs
+- `prompts/`: reusable prompts for schema, verification, rewrites, and cleanup workflows
+- `schemas/`: editable JSON-LD starter files and governed schema payloads
+- `scripts/`: small TypeScript utilities for verification, QA, schema generation, and Wix rollout support
+- `templates/`: controlled markdown blueprints for future page types
+- `reports/`: generated verification logs, QA outputs, and handoff artifacts
+- `wix/`: Wix-related implementation materials and supporting assets
 
-## Workflow Summary
+## Key Docs
 
-1. Use `docs/phase-0-triage.md` to run cleanup in a controlled order.
-2. Track URL, redirect, canonical, keyword, and action data in `data/`.
-3. Keep schema changes governed by `schemas/` starters plus `prompts/schema-generation.md`.
-4. Use `scripts/verify-urls.ts` and `scripts/qa-check.ts` as the starting point for repeatable checks.
-5. Do not generate large page batches until Phase 0 done criteria are satisfied in `TASKS.md`.
+- `docs/seo-ops-architecture.md`: repo operating model and control layers
+- `docs/phase-0-triage.md`: cleanup order and escalation path
+- `docs/phase-0-closeout.md`: Phase 0 completion status and verified outcomes
+- `docs/robots-meta-policy.md`: crawl/index policy guidance
+- `docs/page-blueprints.md`: approved future page blueprint rules
+- `docs/pseo-source-of-truth-schema.md`: governed data model for future scaled page families
+- `docs/phase-1-kickoff.md`: Phase 1 rollout context and execution direction
 
-## URL Verification Usage
+## Current Status
 
-Run the Phase 0 URL verifier:
+- Phase 0 core remediation is complete and documented in `docs/phase-0-closeout.md`.
+- Verification artifacts confirm representative URLs pass the required baseline checks for status, title, and canonical presence.
+- The repo now supports controlled Phase 1 rollout work, including Wix execution tracking and verification.
+- Any remaining unknowns should stay in tracked queues until explicitly resolved.
+
+## Core Data Files
+
+- `data/url_inventory.csv`: current URL inventory and disposition decisions
+- `data/redirects.csv`: approved redirect mappings
+- `data/canonicals.csv`: canonical target decisions
+- `data/action_queue.csv`: operator task queue, blockers, and ownership
+- `data/audit_issues.csv`: normalized issue tracker with severity, status, and due dates
+- `data/issue_to_url_map.csv`: issue-to-URL mapping table
+- `data/five_url_verification.csv`: representative verification sample set
+- `data/schema_backlog.csv`: schema fixes and missing-field queue
+- `data/wix_changes.csv`: execution log for published Wix remediation work
+
+## Scripts
+
+```bash
+npm run bootstrap
+npm run verify
+npm run qa
+npm run schema
+npm run verify:wix
+npm run verify:wix:live
+npm run wix:seed
+npm run wix:wave1:bindings
+```
+
+## Verification Workflow
+
+Run the baseline URL verifier:
 
 ```bash
 npm run verify
 ```
 
-Behavior:
+This workflow:
 
-- Reads URLs from `data/five_url_verification.csv` (column: `url`) when usable rows exist.
-- Falls back to a small hardcoded list when usable CSV rows are missing.
-- Writes reports to:
-  - `reports/url-verification.csv`
-  - `reports/url-verification.md`
-- Exits with a non-zero status when any URL has status not `200`, missing title, or missing canonical.
+- reads URLs from `data/five_url_verification.csv` when usable rows are present
+- falls back to a small hardcoded sample if needed
+- writes outputs to `reports/url-verification.csv` and `reports/url-verification.md`
+- fails loudly when a checked URL returns a non-`200` status, lacks a title, or lacks a canonical
 
-## Current Status
+Run the repo QA checks:
 
-- Phase 0 core remediation complete.
-- Two open follow-up items remain: robots meta validation and legacy URL disposition.
-- Latest verification reports: `reports/url-verification.csv` and `reports/url-verification.md`.
+```bash
+npm run qa
+```
 
-## Phase 0 Audit Tracking Files
+Use QA before signoff when editing governed CSVs, schema payloads, or rollout tracking files.
 
-- `data/audit_issues.csv`: master list of normalized audit findings with severity, status, ownership, and due dates.
-- `data/issue_to_url_map.csv`: mapping table that links each issue to the exact impacted URL(s) and page context.
-- `data/wix_changes.csv`: execution log for requested and published Wix changes tied to SEO remediation work.
-- `data/schema_backlog.csv`: structured queue of schema fixes with missing required fields, owners, and release targeting.
+## Working Principles
+
+- Prefer clarity over abstraction.
+- Keep utilities small, inspectable, and easy to run.
+- Make missing required data obvious.
+- Use scripts for repeatable checks, not speculative automation.
+- Do not scale page generation until controls, templates, and QA gates are explicitly ready.
