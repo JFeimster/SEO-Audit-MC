@@ -172,12 +172,81 @@ function addMismatchFinding(
   }
 }
 
+function extractViewerModel(html: string): Record<string, unknown> | null {
+  const match = html.match(
+    /<script type="application\/json" id="wix-viewer-model">([\s\S]*?)<\/script>/i
+  );
+  if (!match?.[1]) {
+    return null;
+  }
+
+  try {
+    return JSON.parse(match[1]) as Record<string, unknown>;
+  } catch {
+    return null;
+  }
+}
+
+function normalizePrefix(prefix: string): string {
+  return prefix.replace(/^\/+/, "").trim().toLowerCase();
+}
+
+function extractDynamicRouterPrefixes(viewerModel: Record<string, unknown>): string[] {
+  const prefixes = new Set<string>();
+
+  const prefixToRouterFetchData = (
+    viewerModel.siteFeaturesConfigs as
+      | {
+          dynamicPages?: {
+            prefixToRouterFetchData?: Record<string, unknown>;
+          };
+        }
+      | undefined
+  )?.dynamicPages?.prefixToRouterFetchData;
+
+  if (prefixToRouterFetchData && typeof prefixToRouterFetchData === "object") {
+    for (const key of Object.keys(prefixToRouterFetchData)) {
+      prefixes.add(normalizePrefix(key));
+    }
+  }
+
+  const routersConfigMap = (
+    viewerModel.siteAssets as
+      | {
+          siteScopeParams?: {
+            routersInfo?: {
+              configMap?: Record<string, { prefix?: string }>;
+            };
+          };
+        }
+      | undefined
+  )?.siteScopeParams?.routersInfo?.configMap;
+
+  if (routersConfigMap && typeof routersConfigMap === "object") {
+    for (const value of Object.values(routersConfigMap)) {
+      const prefix = value?.prefix;
+      if (typeof prefix === "string" && prefix.trim().length > 0) {
+        prefixes.add(normalizePrefix(prefix));
+      }
+    }
+  }
+
+  return Array.from(prefixes).sort();
+}
+
+function extractPageId(html: string): string {
+  return extractTagValue(html, /"pageId":"([^"]+)"/i);
+}
+
 async function main() {
   const findings: Finding[] = [];
   const content = await readFile(INPUT_PATH, "utf8");
   const { rows } = parseCsv(content);
 
   const wave1Rows = rows.filter((row) => (row.launchBatch ?? "") === "batch_01");
+  let industriesRouterCheckDone = false;
+  const pageIdsBySlug = new Map<string, string>();
+  let fallbackProbeUrl = "";
 
   for (const row of wave1Rows) {
     const slug = row.slug ?? "";
@@ -211,6 +280,38 @@ async function main() {
         continue;
       }
 
+      if (!industriesRouterCheckDone) {
+        industriesRouterCheckDone = true;
+        fallbackProbeUrl = url;
+
+        const viewerModel = extractViewerModel(html);
+        if (!viewerModel) {
+          findings.push({
+            severity: "warning",
+            slug,
+            check: "viewer_model_parse",
+            expected: "wix-viewer-model JSON script parseable",
+            actual: "viewer model missing or invalid JSON",
+            message:
+              "Could not parse live Wix viewer model. Dynamic router prefix checks were skipped for this run."
+          });
+        } else {
+          const prefixes = extractDynamicRouterPrefixes(viewerModel);
+          const hasIndustriesPrefix = prefixes.includes("industries");
+          if (!hasIndustriesPrefix) {
+            findings.push({
+              severity: "error",
+              slug,
+              check: "dynamic_router_prefix_presence",
+              expected: "dynamic router prefixes include industries",
+              actual: prefixes.join(", "),
+              message:
+                "Live viewer model does not include an industries dynamic router prefix, so /industries/* may be resolving to a static/fallback page instead of industryPages dynamic routing."
+            });
+          }
+        }
+      }
+
       const actualCanonical = extractTagValue(html, /<link rel="canonical" href="([^"]+)"/i);
       const actualTitle = extractTagValue(html, /<title>(.*?)<\/title>/i);
       const actualMetaDescription = extractTagValue(
@@ -218,6 +319,11 @@ async function main() {
         /<meta name="description" content="([^"]*)"/i
       );
       const actualOgTitle = extractTagValue(html, /<meta property="og:title" content="([^"]*)"/i);
+      const actualPageId = extractPageId(html);
+
+      if (actualPageId) {
+        pageIdsBySlug.set(slug, actualPageId);
+      }
 
       addMismatchFinding(
         findings,
@@ -276,6 +382,49 @@ async function main() {
         expected: "successful fetch",
         actual: String(error),
         message: "Failed to fetch live route for binding verification."
+      });
+    }
+  }
+
+  if (fallbackProbeUrl) {
+    const invalidProbeUrl = fallbackProbeUrl.replace(
+      /\/[^/]+$/,
+      "/not-a-real-industry-slug-zz"
+    );
+
+    try {
+      const probeResponse = await fetch(invalidProbeUrl, { redirect: "follow" });
+      const probeHtml = await probeResponse.text();
+      const probePageId = extractPageId(probeHtml);
+
+      const distinctWave1PageIds = Array.from(new Set(pageIdsBySlug.values()));
+      const hasSingleWave1PageId = distinctWave1PageIds.length === 1;
+      const wave1PageId = distinctWave1PageIds[0] ?? "";
+
+      if (
+        probeResponse.status === 200 &&
+        probePageId &&
+        hasSingleWave1PageId &&
+        probePageId === wave1PageId
+      ) {
+        findings.push({
+          severity: "warning",
+          slug: "not-a-real-industry-slug-zz",
+          check: "invalid_slug_fallback_signal",
+          expected: "invalid /industries slug should not resolve to same pageId as valid Wave 1 slugs",
+          actual: `status=${probeResponse.status}, pageId=${probePageId}`,
+          message:
+            "Invalid industries slug resolved to the same live pageId as valid slugs, indicating a static/fallback route pattern instead of item-level dynamic routing."
+        });
+      }
+    } catch (error) {
+      findings.push({
+        severity: "warning",
+        slug: "not-a-real-industry-slug-zz",
+        check: "invalid_slug_probe_fetch",
+        expected: "successful fetch",
+        actual: String(error),
+        message: "Failed to run invalid slug fallback probe."
       });
     }
   }

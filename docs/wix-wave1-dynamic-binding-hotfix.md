@@ -7,7 +7,16 @@ Site: `Moonshine Capital` (`metaSiteId: cc61a0cb-edcd-43dc-bdda-42c76443dcd6`)
 
 Wave 1 cannot be re-advanced to `publish_approved` until the dynamic page/template SEO bindings in Wix Editor are corrected and live verification passes (`npm run verify:wix:live` returns `Errors: 0`).
 
-Latest live verification: `reports/wix-wave1-live-binding-verification.md` (`Errors: 15`, `Warnings: 4`).
+Latest live verification: `reports/wix-wave1-live-binding-verification.md` (`Errors: 16`, `Warnings: 5`).
+Latest API remediation status: `industryPages` now has collection-defined `PAGE_LINK` fields (`/industries/{slug}`, `/industries/`) and `PUBLISH` plugin enabled, but live router/output is unchanged.
+
+## Root Cause Evidence (2026-04-01)
+
+- Live viewer router config does not include an `industries` dynamic router prefix.
+- Invalid slug probe (`/industries/not-a-real-industry-slug-zz`) resolves as `200` with the same live page object as valid Wave 1 slugs.
+- Current live `/industries/*` responses fingerprint to `pageId=cp4jk` under `appDefinitionId=e593b0bd-b783-45b8-97c2-873d42aacaf4`, which helps identify the fallback/static page currently serving these URLs.
+- Data-level fixes are already in place (`industryPages.link-industry-pages-title`, `industryPages.link-industry-pages-all`, `_publishStatus=PUBLISHED`) and still do not produce dynamic router activation.
+- This indicates `/industries/*` is currently serving a static/fallback page pattern instead of item-level `industryPages` dynamic routing.
 
 ## Editor Entry Point
 
@@ -19,9 +28,10 @@ If prompted, sign in with the site owner account that has edit permissions.
 
 ## Exact Fix Steps (Do Not Skip)
 
-1. Open the dynamic item page intended for `industryPages` and confirm route pattern is `/industries/{slug}`.
-2. Confirm the page dataset source is `industryPages` (not a static fallback page).
-3. In page SEO settings, bind each field to CMS values:
+1. In Content Manager -> Dynamic Pages, confirm `industryPages` has an active **item** dynamic page route with prefix `industries` and pattern `/industries/{slug}`.
+2. Remove or disable any static/fallback page behavior that causes unknown `/industries/*` slugs to render the same page.
+3. Open the dynamic item page intended for `industryPages` and confirm dataset source is `industryPages` (not a static fallback page).
+4. In page SEO settings, bind each field to CMS values:
    - title -> `seoTitle`
    - meta description -> `metaDescription`
    - canonical -> `canonicalUrl`
@@ -29,14 +39,14 @@ If prompted, sign in with the site owner account that has edit permissions.
    - og description -> `ogDescription`
    - og image -> `ogImage`
    - robots -> `robotsDirective`
-4. In template content bindings, confirm:
+5. In template content bindings, confirm:
    - H1 -> `h1`
    - hero headline -> `heroHeadline`
    - hero subhead -> `heroSubhead`
-5. Confirm all repeaters still filter by:
+6. Confirm all repeaters still filter by:
    - `industryPageRef = current item`
    - `isActive = true`
-6. Publish the site changes.
+7. Publish the site changes.
 
 ## Operator Value Sheet
 
@@ -52,9 +62,10 @@ Generate or refresh values with:
 ## Verification Sequence (Required)
 
 1. `npm run verify:wix`
-2. `npm run verify:wix:live`
+2. `npm run verify:wix:router`
+3. `npm run verify:wix:live`
 
-Only if both pass with no blocking errors:
+Only if all three pass with no blocking errors:
 
 1. Set booleans for each Wave 1 row:
    - `metadataApproved=true`
@@ -67,4 +78,3 @@ Only if both pass with no blocking errors:
 2. Advance lifecycle:
    - `ready_for_qa -> qa_passed -> publish_approved`
 3. Log each status change in `data/wix_changes.csv`.
-

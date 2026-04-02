@@ -5,29 +5,32 @@
 - Latest execution tracker CSV: `data/phase1_wave1_execution_tracking.csv`
 - Latest Wave 1 next-actions brief: `docs/phase-1-wave1-next-actions.md`
 - Latest seed validation report: `reports/wix-industry-implementation-verification.md` (`npm run verify:wix` run on `2026-04-01`, errors `0`, warnings `0`)
-- Latest live binding report: `reports/wix-wave1-live-binding-verification.md` (`npm run verify:wix:live` run on `2026-04-01`, errors `15`, warnings `4`)
+- Latest live binding report: `reports/wix-wave1-live-binding-verification.md` (`npm run verify:wix:live` run on `2026-04-01`, errors `16`, warnings `5`)
+- Router diagnostic report: `reports/wix-wave1-router-diagnostic.md` (missing `industries` dynamic router prefix confirmed on `2026-04-01`)
+- Router verifier command: `npm run verify:wix:router` (fails loudly until the published site exposes the `industries` dynamic router prefix)
+- API remediation note: `industryPages` now includes collection-defined PAGE_LINK fields and `PUBLISH` plugin, but live router output is still static/fallback and requires Wix Editor route/template correction.
 - Dynamic binding hotfix runbook: `docs/wix-wave1-dynamic-binding-hotfix.md`
 - Wave 1 editor value sheet: `reports/wix-wave1-editor-binding-sheet.csv`
 - Exact Wix UI `industryPageRef` operator checklist: `docs/wix-wave1-industryPageRef-mapping-checklist.md`
 - Scope note: tracking is intentionally limited to Wave 1 (`batch_01`) and does not recreate candidate planning artifacts.
 
-## Industry Pages Family To-Do Checklist (15 Tasks)
+## Industry Pages Family To-Do Checklist (Wave 1 Status)
 
-- [ ] Finalize Wix CMS collections in production (`industryPages`, `industryFaqs`, `industryModules`, `industryLinks`) using `docs/wix-cms-industry-schema.md`.
-- [ ] Generate fresh seed files from source of truth with `npm run wix:seed`.
-- [ ] Run `npm run verify:wix` and resolve any binding-blocking errors before import.
-- [ ] Import seed files in required order per `docs/wix-cms-industry-import-runbook.md`.
-- [ ] Resolve `industryPageRef` in supporting collections by matching `industrySlug` to `industryPages.slug`.
-- [ ] Build and bind the dynamic route `/industries/{slug}`.
-- [ ] Bind dynamic SEO controls (title, meta description, canonical, OG, robots).
-- [ ] Verify dynamic template bindings in Wix editor (hero/H1/body/CTA + repeater filters by `industryPageRef` + publish gate logic).
-- [ ] Enforce publish gates so pages cannot publish when `publishReady=false` or QA booleans are incomplete.
-- [ ] Complete Wave 1 content for `batch_01` slugs (`wix-seller-financing`, `ecommerce-business-funding`, `restaurant-funding`, `trucking-funding`, `construction-contractor-funding`).
-- [ ] Complete QA booleans for each Wave 1 page (`metadataApproved`, `schemaApproved`, `linksApproved`, `disclosureApproved`, `contentApproved`, `qaPass`).
-- [ ] Move status through controlled lifecycle (`planned -> brief_ready -> drafting -> ready_for_qa -> qa_passed -> publish_approved -> scheduled -> published`).
-- [ ] Publish only Wave 1 pages that pass all gates.
-- [ ] Run post-publish verification with `npm run verify`.
-- [ ] Log implementation and outcomes in `data/wix_changes.csv` and update open issue references where needed.
+- [x] Finalize Wix CMS collections in production (`industryPages`, `industryFaqs`, `industryModules`, `industryLinks`) using `docs/wix-cms-industry-schema.md`.
+- [x] Generate seed files from source of truth with `npm run wix:seed`.
+- [x] Run `npm run verify:wix` and resolve binding-blocking errors before import (`Errors: 0`, `Warnings: 0` on `2026-04-01`).
+- [x] Import seed files in required order per `docs/wix-cms-industry-import-runbook.md`.
+- [x] Resolve `industryPageRef` in supporting collections by matching `industrySlug` to `industryPages.slug`.
+- [ ] Recreate and bind the live dynamic route `/industries/{slug}` so router prefix `industries` exists in published config.
+- [ ] Bind dynamic SEO controls from CMS fields (title, meta description, canonical, OG, robots) on the live dynamic template.
+- [ ] Verify dynamic template bindings in Wix Editor (hero/H1/body/CTA + repeater filters by `industryPageRef` + publish gate logic) and ensure they render on public URLs.
+- [x] Enforce publish gates so pages cannot proceed when `publishReady=false` or QA booleans are incomplete.
+- [x] Complete Wave 1 content/media for `batch_01` slugs (`wix-seller-financing`, `ecommerce-business-funding`, `restaurant-funding`, `trucking-funding`, `construction-contractor-funding`).
+- [ ] Re-complete QA booleans for each Wave 1 page after live binding fix (`metadataApproved`, `schemaApproved`, `linksApproved`, `disclosureApproved`, `contentApproved`, `qaPass`).
+- [ ] Advance lifecycle from `ready_for_qa -> qa_passed -> publish_approved` only after live/router verification passes.
+- [ ] Publish Wave 1 pages only after all gates pass.
+- [x] Run post-publish verification cycle (`npm run verify`, `npm run verify:wix`, `npm run verify:wix:router`, `npm run verify:wix:live`) and capture reports.
+- [x] Keep Wave 1 implementation outcomes and blocker evidence current in tracking artifacts.
 - [ ] Monitor performance/indexing/canonical stability for 7-14 days and move weak pages to `refresh_needed`.
 - [ ] Start Wave 2 (`batch_02`) only after Wave 1 pass-rate and workflow stability are confirmed.
 

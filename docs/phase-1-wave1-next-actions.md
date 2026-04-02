@@ -10,9 +10,14 @@ Scope: `industry_pages` Wave 1 only (`batch_01`)
 - Live binding verifier report: `reports/wix-wave1-live-binding-verification.md`
 - Dynamic binding hotfix runbook: `docs/wix-wave1-dynamic-binding-hotfix.md`
 - Wave 1 editor value sheet: `reports/wix-wave1-editor-binding-sheet.csv`
-- Latest seed verifier run (`npm run verify:wix` on `2026-04-01`): `Errors: 0`, `Warnings: 0`
-- Latest live verifier run (`npm run verify:wix:live` on `2026-04-01`): `Errors: 15`, `Warnings: 4`
-- Latest QA run (`npm run qa` on `2026-04-01`): `PASS` (CSV parser fix applied in `scripts/qa-check.ts`)
+- Latest execution cycle (`2026-04-01 18:07 ET`):
+  - `npm run verify:wix`: `Errors: 0`, `Warnings: 0`
+  - `npm run verify:wix:router`: `FAIL` (missing `industries` dynamic router prefix)
+  - `npm run verify:wix:live`: `Errors: 16`, `Warnings: 5`
+  - `npm run verify`: `PASS`
+- Latest republish run (`POST https://www.wixapis.com/site-publisher/v1/site/publish` on `2026-04-01`): `completed`, verifier results unchanged (`verify:wix:router` fail, `verify:wix:live` Errors `16`/Warnings `5`)
+- Latest Wix API capability check (`2026-04-01`): no REST endpoint found to directly write dynamic route/template SEO bindings for `/industries/{slug}`; fix must be completed in Wix Editor UI.
+- Latest schema-level remediation attempt (`2026-04-01`): added `industryPages` PAGE_LINK fields (`/industries/{slug}` and `/industries/`) plus `PUBLISH` plugin, published site twice, and re-ran gates; live results remained unchanged (`verify:wix:router` fail, `verify:wix:live` Errors `16`/Warnings `5`).
 - Wave 1 slugs tracked: `5`
 - Slugs with import evidence in `data/wix_changes.csv`: `5/5`
 - Slugs with supporting `industryPageRef` resolved in Wix: `5/5` (`20 FAQ + 15 module + 15 link rows`)
@@ -34,24 +39,40 @@ Scope: `industry_pages` Wave 1 only (`batch_01`)
    - `status=ready_for_qa`
    - blocker reason recorded on each Wave 1 `industryPages` row.
 4. Platform automation limit:
-   - Wix REST APIs available to this workflow do not expose a direct write endpoint for dynamic template SEO field bindings, so correction must be completed in Wix Editor UI before re-verification.
+   - Wix REST APIs available to this workflow do not expose a direct write endpoint for dynamic route/template SEO bindings, so correction must be completed in Wix Editor UI before re-verification.
 5. Branch state confirmation:
    - default branch is `Original-Branch` and publish actions target it; no alternate active branch explains the mismatch.
+6. CMS value confirmation:
+   - `industryPages` records for all Wave 1 slugs already contain expected SEO/content fields; remaining blocker is route/template binding on live dynamic page output.
+7. Controlled marker test confirmation:
+   - temporary marker update on `ecommerce-business-funding` SEO fields did not change live output after publish, confirming `/industries/*` live route is not bound to `industryPages` SEO fields yet.
+8. Re-publish + branch recheck confirmation:
+   - branch query still shows `Original-Branch` as default/active and recently updated, but live metadata output is unchanged after republish, so Wave 1 remains blocked at template binding level.
+9. Router-level root cause confirmation:
+   - live `wix-viewer-model` router config does not include an `industries` dynamic router prefix.
+   - invalid slug probe (`/industries/not-a-real-industry-slug-zz`) returns `200` and resolves to the same page object as valid slugs, confirming static/fallback routing behavior rather than item-level dynamic routing.
+10. Data-level readiness confirmation:
+   - `industryPages` now includes collection-defined page-link fields and publish plugin metadata.
+   - all Wave 1 rows are `_publishStatus=PUBLISHED` and expose expected link values (for example `/industries/wix-seller-financing`), but live router/template output still does not switch to item-level dynamic mode.
 
 ## Next Actions (Execution Order)
 
-1. Fix dynamic page/template bindings in Wix Editor (use `docs/wix-wave1-dynamic-binding-hotfix.md`):
+1. Recreate/repair the `industryPages` dynamic item route in Wix Editor (use `docs/wix-wave1-dynamic-binding-hotfix.md`):
+   - ensure dynamic router prefix exists as `industries`.
+   - ensure item route is `/industries/{slug}` and resolves item-level records from `industryPages`.
+2. Fix dynamic page/template bindings in Wix Editor:
    - ensure route `/industries/{slug}` is bound to the intended dataset item for each slug.
    - ensure SEO bindings map correctly from CMS fields:
      - `seoTitle` -> page title
      - `metaDescription` -> meta description
      - `ogTitle` -> OG title
-2. Republish the dynamic template/page changes in Wix.
-3. Re-run:
+3. Republish the dynamic template/page changes in Wix (`Original-Branch`).
+4. Re-run:
    - `npm run verify:wix`
+   - `npm run verify:wix:router`
    - `npm run verify:wix:live`
-4. Only after live verifier returns `Errors: 0`:
+5. Only after live verifier returns `Errors: 0` and router verifier passes:
    - set `metadataApproved=true`, `qaPass=true`, `publishReady=true`
    - advance lifecycle:
      - `ready_for_qa -> qa_passed -> publish_approved`
-5. Log each status change in `data/wix_changes.csv` before any scheduling/publish action.
+6. Log each status change in `data/wix_changes.csv` before any scheduling/publish action.

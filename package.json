@@ -9,6 +9,7 @@
     "verify:urls": "tsx scripts/verify-urls.ts",
     "verify:wix": "tsx scripts/verify-wix-industry-implementation.ts",
     "verify:wix:live": "tsx scripts/verify-wix-wave1-live-bindings.ts",
+    "verify:wix:router": "tsx scripts/diagnose-wix-live-router.ts",
     "wix:wave1:bindings": "tsx scripts/generate-wix-wave1-editor-binding-sheet.ts",
     "qa": "tsx scripts/qa-check.ts",
     "schema": "tsx scripts/generate-schema.ts",
