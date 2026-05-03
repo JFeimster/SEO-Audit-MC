@@ -1,0 +1,7 @@
+cluster_name,role,target_keyword,proposed_slug,parent_slug,page_family,status,notes
+gig_worker_funding,king_url,gig worker funding,gig-worker-funding,,pillar_pages,needs_review,Proposed hub slug only. Final URL path and canonical rule need operator approval before build.
+gig_worker_funding,spoke,doordash driver loans,doordash-driver-loans,gig-worker-funding,borrower_profile_pages,needs_review,Priority spoke from CTR starter list. Keep qualification language factual and evidence-backed.
+gig_worker_funding,spoke,uber driver loans,uber-driver-loans,gig-worker-funding,borrower_profile_pages,needs_review,Platform-specific spoke candidate. Final slug and page family placement still need approval.
+gig_worker_funding,spoke,lyft driver loans,lyft-driver-loans,gig-worker-funding,borrower_profile_pages,needs_review,Platform-specific spoke candidate. Final slug and page family placement still need approval.
+gig_worker_funding,spoke,instacart shopper funding,instacart-shopper-funding,gig-worker-funding,borrower_profile_pages,needs_review,Platform-specific spoke candidate. Final slug and qualification framing still need approval.
+gig_worker_funding,spoke,amazon flex driver funding,amazon-flex-driver-funding,gig-worker-funding,borrower_profile_pages,needs_review,Platform-specific spoke candidate. Final slug and qualification framing still need approval.
