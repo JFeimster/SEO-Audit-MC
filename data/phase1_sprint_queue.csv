@@ -1,0 +1,6 @@
+task_id,workstream,execution_lane,task,status,verification_command,notes
+P1S-001,wix_discovery,cms_api,Reconcile confirmed Wix connector findings into repo tracking,completed,repo_update,Discovery findings are now recorded in the Wix inventory patch-plan blocker and playbook files.
+P1S-002,wix_route_binding,editor_required,Confirm or recreate the industryPages dynamic item route /industries/{slug} so live /industries/* stops resolving through a fallback or static page pattern,blocked,npm run verify:wix:router,Remains blocked and editor_required until the industries route is fixed in Wix Editor.
+P1S-003,wix_template_binding,editor_required,Bind live SEO metadata and current-item content fields on the dynamic template,blocked,npm run verify:wix:live,Remains blocked until the Editor route fix is complete and live verification passes.
+P1S-004,wix_cms_governance,cms_api,Keep Wave 1 metadataApproved fields blocked at false until live verification supports completion,blocked,npm run verify:wix:live,API patch task remains blocked until Editor fixes land and live verification passes.
+P1S-005,wix_cms_patch_execution,cms_api,Hold all approved CMS patch execution until live route and template verification passes,blocked,npm run verify:wix:live,API patch tasks remain blocked until live verification passes.

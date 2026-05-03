@@ -83,6 +83,9 @@ npm run qa
 npm run schema
 npm run verify:wix
 npm run verify:wix:live
+npm run verify:wix:router
+npm run wix:patch-plan
+npm run wix:blockers
 npm run wix:seed
 npm run wix:wave1:bindings
 ```
@@ -109,6 +112,32 @@ npm run qa
 ```
 
 Use QA before signoff when editing governed CSVs, schema payloads, or rollout tracking files.
+
+## Wix Blocker Control Layer
+
+Use the Wix control-layer artifacts before attempting any CMS patching or Editor remediation:
+
+1. `npm run wix:patch-plan`
+   - builds or refreshes `data/wix_field_patch_plan.csv`
+   - writes `reports/wix-patch-plan-summary.md`
+2. `npm run wix:blockers`
+   - prints tracked Editor blockers
+   - exits non-zero while `P0` Editor blockers remain open
+3. `npm run verify:wix`
+4. `npm run verify:wix:router`
+5. `npm run verify:wix:live`
+
+Operator docs and prompts:
+
+- `docs/wix-automation-playbook.md`
+- `prompts/wix-connector-discovery.md`
+- `prompts/wix-cms-patch-execution.md`
+
+Governed tracking files:
+
+- `data/wix_cms_collection_inventory.csv`
+- `data/wix_field_patch_plan.csv`
+- `data/wix_editor_blockers.csv`
 
 ## Working Principles
 
