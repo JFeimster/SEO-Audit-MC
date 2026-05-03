@@ -93,7 +93,11 @@ function parseCsv(content: string): { headers: string[]; rows: Row[] } {
 
 function csvEscape(value: string): string {
   if (/[",\n\r]/.test(value)) {
+<<<<<<< HEAD
     return `"${value.replace(/"/g, "\"\"")}"`;
+=======
+    return `"${value.replace(/"/g, """")}"`;
+>>>>>>> 122aef05981552076ab6261e1772d82fcbd8b522
   }
   return value;
 }
