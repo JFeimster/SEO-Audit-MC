@@ -1,0 +1,6 @@
+patch_id,collection_id,item_id,slug,field_key,current_value,proposed_value,reason,status,requires_approval,notes
+WIX-PATCH-001,industryPages,ac5dab34-cd8c-4bdd-9701-9f74569a24db,wix-seller-financing,metadataApproved,false,false,CMS metadata exists but live binding mismatch remains.,blocked,false,Do not set true until live verification passes.
+WIX-PATCH-002,industryPages,0b8b9f28-8134-47bc-8855-7d6cccf8571c,ecommerce-business-funding,metadataApproved,false,false,CMS metadata exists but live binding mismatch remains.,blocked,false,Do not set true until live verification passes.
+WIX-PATCH-003,industryPages,4b2fb8f9-e354-411e-864a-210ef99a7ccb,restaurant-funding,metadataApproved,false,false,CMS metadata exists but live binding mismatch remains.,blocked,false,Do not set true until live verification passes.
+WIX-PATCH-004,industryPages,0be11a45-5dc2-483a-819e-7a56743fe638,trucking-funding,metadataApproved,false,false,CMS metadata exists but live binding mismatch remains.,blocked,false,Do not set true until live verification passes.
+WIX-PATCH-005,industryPages,c04c2ac0-d806-4e9a-a130-d1e77b57e6a9,construction-contractor-funding,metadataApproved,false,false,CMS metadata exists but live binding mismatch remains.,blocked,false,Do not set true until live verification passes.
