@@ -1,0 +1,6 @@
+task_id,workstream,scope,task,status,dependency,notes
+WIX-API-001,industry_pages,batch_01,Generate or refresh Wave 1 seed files with npm run wix:seed,complete,source_csvs_ready,Seed files already exist for Wave 1 and broader industry rollout.
+WIX-API-002,industry_pages,batch_01,Validate seed files with npm run verify:wix,complete,seed_files_present,Latest documented run passed with Errors 0 and Warnings 0 on 2026-04-01.
+WIX-API-003,industry_pages,batch_01,Keep phase1_rollout_candidates and keyword_clusters aligned before any new import,open,operator_updates,Use governed CSVs as the source of truth before regenerating seeds.
+WIX-API-004,industry_pages,batch_01,Refresh the editor binding value sheet with npm run wix:wave1:bindings after approved metadata changes,open,approved_field_updates,Use this when SEO field values change and the manual editor team needs fresh copy.
+WIX-API-005,industry_pages,batch_01,Republish from the available Wix publish endpoint after manual route or template fixes,blocked,manual_route_and_binding_fix,Existing evidence shows publish calls alone do not resolve the live dynamic binding issue.

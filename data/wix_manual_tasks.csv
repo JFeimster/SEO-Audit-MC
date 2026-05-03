@@ -1,0 +1,7 @@
+task_id,workstream,scope,task,status,dependency,notes
+WIX-MAN-001,industry_pages,batch_01,Recreate or repair the industryPages dynamic item route /industries/{slug} in Wix Editor,open,editor_access_required,Live router evidence still shows the industries prefix is missing.
+WIX-MAN-002,industry_pages,batch_01,Remove or disable the static or fallback page behavior serving /industries/*,open,WIX-MAN-001,Unknown slugs currently resolve as 200 to the same fallback page object.
+WIX-MAN-003,industry_pages,batch_01,Bind page title meta description canonical OG title OG description OG image and robots to CMS fields on the live dynamic template,open,WIX-MAN-001,Available repo evidence says this binding cannot currently be completed through the exposed REST APIs.
+WIX-MAN-004,industry_pages,batch_01,Confirm H1 hero and CTA bindings use the current industryPages item,open,WIX-MAN-001,Four Wave 1 slugs still fail hero or H1 signal checks in live verification.
+WIX-MAN-005,industry_pages,batch_01,Confirm repeaters filter by industryPageRef equals current item and isActive equals true,open,WIX-MAN-001,Required to keep supporting modules FAQs and links scoped to the active slug.
+WIX-MAN-006,industry_pages,batch_01,Republish the corrected template from the Wix Editor,open,WIX-MAN-003,Run only after route and binding fixes are complete.
