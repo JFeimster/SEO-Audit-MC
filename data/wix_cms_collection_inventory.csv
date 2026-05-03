@@ -1,0 +1,11 @@
+collection_id,display_name,display_field,read_permission,insert_permission,update_permission,has_publish_plugin,has_editable_page_link_plugin,notes
+industryPages,Industry Pages,title,ANYONE,ADMIN,ADMIN,true,true,Confirmed Wave 1 industry page collection. Native CMS collection with PUBLISH and EDITABLE_PAGE_LINK plugins. Item route field exists at link-industry-pages-title using /industries/{slug}.
+<<<<<<< HEAD
+industryFaqs,Industry FAQs,needs_review,needs_review,needs_review,needs_review,needs_review,needs_review,Supporting collection exists in current Wix rollout model, but permissions and schema still need review before any connector-driven patching.
+industryModules,Industry Modules,needs_review,needs_review,needs_review,needs_review,needs_review,needs_review,Supporting collection exists in current Wix rollout model, but permissions and schema still need review before any connector-driven patching.
+industryLinks,Industry Links,needs_review,needs_review,needs_review,needs_review,needs_review,needs_review,Supporting collection exists in current Wix rollout model, but permissions and schema still need review before any connector-driven patching.
+=======
+industryFaqs,Industry FAQs,needs_review,needs_review,needs_review,needs_review,needs_review,needs_review,Supporting collection exists in current Wix rollout model but permissions and schema still need review before any connector-driven patching.
+industryModules,Industry Modules,needs_review,needs_review,needs_review,needs_review,needs_review,needs_review,Supporting collection exists in current Wix rollout model but permissions and schema still need review before any connector-driven patching.
+industryLinks,Industry Links,needs_review,needs_review,needs_review,needs_review,needs_review,needs_review,Supporting collection exists in current Wix rollout model but permissions and schema still need review before any connector-driven patching.
+>>>>>>> 122aef05981552076ab6261e1772d82fcbd8b522

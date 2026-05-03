@@ -1,3 +1,11 @@
+<<<<<<< HEAD
+task_id,workstream,execution_lane,task,status,verification_command,notes
+P1S-001,wix_discovery,cms_api,Reconcile confirmed Wix connector findings into repo tracking,completed,repo_update,Discovery findings are now recorded in the Wix inventory patch-plan blocker and playbook files.
+P1S-002,wix_route_binding,editor_required,Confirm or recreate the industryPages dynamic item route /industries/{slug} so live /industries/* stops resolving through a fallback or static page pattern,blocked,npm run verify:wix:router,Remains blocked and editor_required until the industries route is fixed in Wix Editor.
+P1S-003,wix_template_binding,editor_required,Bind live SEO metadata and current-item content fields on the dynamic template,blocked,npm run verify:wix:live,Remains blocked until the Editor route fix is complete and live verification passes.
+P1S-004,wix_cms_governance,cms_api,Keep Wave 1 metadataApproved fields blocked at false until live verification supports completion,blocked,npm run verify:wix:live,API patch task remains blocked until Editor fixes land and live verification passes.
+P1S-005,wix_cms_patch_execution,cms_api,Hold all approved CMS patch execution until live route and template verification passes,blocked,npm run verify:wix:live,API patch tasks remain blocked until live verification passes.
+=======
 task_id,task_name,source_file,priority,blocker,status,owner,next_action,acceptance_criteria,notes
 P1S-001,Confirm Phase 1 sprint queue,docs/phase-1-sprint-plan.md,p0,none,ready,seo-ops,Review queue and run npm run qa,Queue exists and QA passes,Immediate governance task
 P1S-002,Repair Wix industry dynamic route,data/wix_manual_tasks.csv,p0,wix_editor_required,blocked,wix_editor,Complete WIX-MAN-001 through WIX-MAN-003,Wix industry pages resolve to correct CMS item,Primary Wave 1 blocker
@@ -9,3 +17,9 @@ P1S-007,Resolve ecommerce seller cluster map,data/ecommerce_seller_cluster_map.c
 P1S-008,Resolve AQ-007 redirect decision,data/action_queue.csv,p2,approved_target_missing,blocked,business_owner,Provide approved target URL or keep page,Action queue updated with evidence-backed decision,No redirect entry until target approved
 P1S-009,Resolve AQ-008 services intent decision,data/action_queue.csv,p2,approved_target_missing,blocked,business_owner,Decide whether services page remains marketplace hub or redirects,Action queue updated with evidence-backed decision,No redirect entry until target approved
 P1S-010,Run sprint closeout QA,docs/phase-1-sprint-plan.md,p1,sprint_changes_needed,ready,seo-ops,Run npm run qa and relevant verification scripts,QA passes and blockers are explicit,Closeout report only if evidence changed
+P1S-011,Reconcile Wix connector discovery findings,data/wix_cms_collection_inventory.csv,p0,none,completed,seo-ops,Keep discovery evidence recorded in inventory patch-plan blocker and playbook files,Wix discovery findings are represented in repo tracking,Added from PR 21 conflict resolution
+P1S-012,Confirm industryPages dynamic item route,data/wix_editor_blockers.csv,p0,wix_editor_required,blocked,wix_editor,Confirm or recreate /industries/{slug} dynamic item page,Valid industry slugs resolve to distinct CMS item output,Tracks WIX-BLOCK-001
+P1S-013,Bind live SEO metadata to CMS fields,data/wix_editor_blockers.csv,p0,wix_route_fix,blocked,wix_editor,Bind seoTitle metaDescription canonicalUrl ogTitle ogDescription ogImage robotsDirective,Live metadata matches industryPages CMS values,Tracks WIX-BLOCK-002
+P1S-014,Bind H1 hero and CTA to current CMS item,data/wix_editor_blockers.csv,p0,wix_route_fix,blocked,wix_editor,Bind h1 heroHeadline heroSubhead primaryCtaLabel and primaryCtaUrl,Live H1 hero and CTA differ correctly per slug,Tracks WIX-BLOCK-003
+P1S-015,Hold CMS metadataApproved patches,data/wix_field_patch_plan.csv,p1,wix_live_verification,blocked,seo-ops,Keep metadataApproved=false until live verification passes,No metadataApproved row is patched before evidence,Prevents CMS truth from outrunning live output
+>>>>>>> 122aef05981552076ab6261e1772d82fcbd8b522
